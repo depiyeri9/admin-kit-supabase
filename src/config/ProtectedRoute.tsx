@@ -1,7 +1,23 @@
 import { Session } from "@supabase/supabase-js";
 import { useState, useEffect } from "react";
 import { Navigate } from "react-router-dom";
-import { getCurrentSessionDTO } from "./AuthProvider";
+
+type getCurrentSessionDTO = () => Promise<
+  | {
+      data:
+        | {
+            session: Session;
+          }
+        | {
+            session: null;
+          };
+      error: null;
+    }
+  | {
+      data: null;
+      error: unknown;
+    }
+>;
 
 // Protected Route Component
 export const ProtectedRoute = ({
