@@ -1,6 +1,6 @@
 {
     "name": "admin-kit-supabase",
-    "version": "1.0.0",
+    "version": "0.1.0",
     "description": "Admin kit for managing Supabase data with customizable entities and UI.",
     "main": "src/index.ts",
     "scripts": {
