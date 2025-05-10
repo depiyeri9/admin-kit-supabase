@@ -10,7 +10,9 @@ import { AdminConfig } from "./types/adminConfig";
 import { ProtectedRoute } from "./config/ProtectedRoute";
 import { AdminProvider } from "./context/AdminContext";
 
-type AdminAppProps = {
+export * from "./types/adminConfig"
+
+export type AdminAppProps = {
   config: AdminConfig;
   children: React.ReactNode;
 };
