@@ -220,7 +220,7 @@ const AdminArticles = ({ query }: AdminArticlesProps) => {
       key: "slug",
       header: "Slug",
       render: (value: string) => (
-        <div className="max-w-xs truncate font-mono text-xs text-emerald/70">
+        <div className="max-w-xs truncate font-mono text-xs text-primary/70">
           {value}
         </div>
       ),
@@ -233,8 +233,8 @@ const AdminArticles = ({ query }: AdminArticlesProps) => {
           <div
             className={`px-2 py-1 rounded-full text-xs ${
               value === "published"
-                ? "bg-emerald/20 text-emerald"
-                : "bg-gold/20 text-gold"
+                ? "bg-primary/20 text-primary"
+                : "bg-secondary/20 text-secondary"
             }`}
           >
             {value === "published" ? "Published" : "Draft"}
@@ -243,7 +243,7 @@ const AdminArticles = ({ query }: AdminArticlesProps) => {
           <Button
             variant="ghost"
             size="sm"
-            className="h-6 w-6 p-0 text-emerald/70"
+            className="h-6 w-6 p-0 text-primary/70"
             onClick={() =>
               handleChangeStatus(
                 item.id,
@@ -283,7 +283,7 @@ const AdminArticles = ({ query }: AdminArticlesProps) => {
           {!isFormVisible ? (
             <Button
               onClick={() => setIsFormVisible(true)}
-              className="bg-gold text-black hover:bg-gold/90"
+              className="bg-secondary text-black hover:bg-secondary/90"
             >
               <svg
                 className="w-4 h-4 mr-2"
@@ -301,9 +301,9 @@ const AdminArticles = ({ query }: AdminArticlesProps) => {
               Write New Article
             </Button>
           ) : (
-            <div className="bg-emerald-light rounded-lg border border-gold/20 p-6">
+            <div className="bg-primary-light rounded-lg border border-secondary/20 p-6">
               <div className="flex justify-between items-center mb-6">
-                <h2 className="font-serif text-xl text-gold">
+                <h2 className="font-serif text-xl text-secondary">
                   {currentArticle ? "Edit Article" : "Create New Article"}
                 </h2>
                 <Button
@@ -333,13 +333,13 @@ const AdminArticles = ({ query }: AdminArticlesProps) => {
                         name="title"
                         value={form.title}
                         onChange={handleInputChange}
-                        className="flex-1 bg-emerald-gold/20 border-gold/30 text-black"
+                        className="flex-1 bg-primary-secondary/20 border-secondary/30 text-black"
                         required
                       />
                       <Button
                         type="button"
                         variant="outline"
-                        className="border-gold/30 text-gold"
+                        className="border-secondary/30 text-secondary"
                         onClick={generateSlug}
                       >
                         Generate Slug
@@ -357,7 +357,7 @@ const AdminArticles = ({ query }: AdminArticlesProps) => {
                       name="slug"
                       value={form.slug}
                       onChange={handleInputChange}
-                      className="bg-emerald-gold/20 border-gold/30 text-black font-mono"
+                      className="bg-primary-secondary/20 border-secondary/30 text-black font-mono"
                       required
                     />
                   </div>
@@ -372,7 +372,7 @@ const AdminArticles = ({ query }: AdminArticlesProps) => {
                       name="author_name"
                       value={form.author_name}
                       onChange={handleInputChange}
-                      className="bg-emerald-gold/20 border-gold/30 text-black"
+                      className="bg-primary-secondary/20 border-secondary/30 text-black"
                       required
                     />
                   </div>
@@ -387,7 +387,7 @@ const AdminArticles = ({ query }: AdminArticlesProps) => {
                       name="category"
                       value={form.category}
                       onChange={handleInputChange}
-                      className="bg-emerald-gold/20 border-gold/30 text-black"
+                      className="bg-primary-secondary/20 border-secondary/30 text-black"
                     />
                   </div>
 
@@ -401,7 +401,7 @@ const AdminArticles = ({ query }: AdminArticlesProps) => {
                       name="cover_image"
                       value={form.cover_image}
                       onChange={handleInputChange}
-                      className="bg-emerald-gold/20 border-gold/30 text-black"
+                      className="bg-primary-secondary/20 border-secondary/30 text-black"
                       placeholder="https://example.com/image.jpg"
                       required
                     />
@@ -417,7 +417,7 @@ const AdminArticles = ({ query }: AdminArticlesProps) => {
                       name="excerpt"
                       value={form.excerpt}
                       onChange={handleInputChange}
-                      className="w-full rounded-md bg-emerald-gold/20 border-gold/30 text-black h-20 px-3 py-2"
+                      className="w-full rounded-md bg-primary-secondary/20 border-secondary/30 text-black h-20 px-3 py-2"
                       required
                     />
                   </div>
@@ -432,7 +432,7 @@ const AdminArticles = ({ query }: AdminArticlesProps) => {
                       name="content"
                       value={form.content}
                       onChange={handleInputChange}
-                      className="w-full rounded-md bg-emerald-gold/20 border-gold/30 text-black h-72 px-3 py-2 font-mono text-sm"
+                      className="w-full rounded-md bg-primary-secondary/20 border-secondary/30 text-black h-72 px-3 py-2 font-mono text-sm"
                       required
                     />
                   </div>
@@ -471,7 +471,7 @@ const AdminArticles = ({ query }: AdminArticlesProps) => {
                   <div className="flex gap-4 pt-2">
                     <Button
                       type="submit"
-                      className="bg-gold text-black hover:bg-gold/90"
+                      className="bg-secondary text-black hover:bg-secondary/90"
                       disabled={
                         createMutation.isPending || updateMutation.isPending
                       }
@@ -515,7 +515,7 @@ const AdminArticles = ({ query }: AdminArticlesProps) => {
 
         {/* Articles Table */}
         <div>
-          <h2 className="font-serif text-xl text-gold mb-4">All Articles</h2>
+          <h2 className="font-serif text-xl text-secondary mb-4">All Articles</h2>
 
           <ContentTable
             columns={columns}

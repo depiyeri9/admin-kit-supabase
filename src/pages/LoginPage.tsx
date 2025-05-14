@@ -74,12 +74,12 @@ const LoginPage = ({ loginWithEmailPassword }: LoginPageProps) => {
     <div className="min-h-screen flex items-center justify-center bg-background">
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
-          <h1 className="font-serif text-6xl text-gold">Velour Essence</h1>
+          <h1 className="font-serif text-6xl text-secondary">Velour Essence</h1>
           <p className="text-black/60 mt-2">Admin Dashboard</p>
         </div>
 
-        <div className="bg-emerald-light border border-gold/20 rounded-lg shadow-lg p-8">
-          <h2 className="font-serif text-2xl text-gold mb-6 text-center">
+        <div className="bg-primary-light border border-secondary/20 rounded-lg shadow-lg p-8">
+          <h2 className="font-serif text-2xl text-secondary mb-6 text-center">
             Login
           </h2>
 
@@ -93,7 +93,7 @@ const LoginPage = ({ loginWithEmailPassword }: LoginPageProps) => {
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="bg-emerald-light/20 border-gold/30 text-white placeholder-white/50"
+                className="bg-primary-light/20 border-secondary/30 text-white placeholder-white/50"
                 placeholder="admin@example.com"
                 required
                 disabled={isLoading}
@@ -111,7 +111,7 @@ const LoginPage = ({ loginWithEmailPassword }: LoginPageProps) => {
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="bg-emerald-light/20 border-gold/30 text-white placeholder-white/50"
+                className="bg-primary-light/20 border-secondary/30 text-white placeholder-white/50"
                 required
                 disabled={isLoading}
               />
@@ -119,7 +119,7 @@ const LoginPage = ({ loginWithEmailPassword }: LoginPageProps) => {
 
             <Button
               type="submit"
-              className="w-full bg-gold text-black hover:bg-gold/90"
+              className="w-full bg-secondary text-black hover:bg-secondary/90"
               disabled={isLoading}
             >
               {isLoading ? (

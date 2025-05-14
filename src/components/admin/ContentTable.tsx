@@ -32,20 +32,20 @@ function ContentTable<T extends { id: string }>({
   isLoading = false 
 }: ContentTableProps<T>) {
   return (
-    <div className="w-full overflow-x-auto rounded-lg border border-emerald/50">
+    <div className="w-full overflow-x-auto rounded-lg border border-primary/50">
       <Table>
         <TableHeader>
-          <TableRow className="bg-emerald-light hover:bg-emerald-light">
+          <TableRow className="bg-primary-light hover:bg-primary-light">
             {columns.map((column) => (
               <TableHead 
                 key={column.key} 
-                className="text-gold font-serif"
+                className="text-secondary font-serif"
                 style={column.width ? { width: column.width } : {}}
               >
                 {column.header}
               </TableHead>
             ))}
-            <TableHead className="text-gold font-serif text-right">Actions</TableHead>
+            <TableHead className="text-secondary font-serif text-right">Actions</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -53,7 +53,7 @@ function ContentTable<T extends { id: string }>({
             <TableRow>
               <TableCell colSpan={columns.length + 1} className="text-center py-10">
                 <div className="flex justify-center">
-                  <div className="w-8 h-8 border-2 border-gold border-t-transparent rounded-full animate-spin"></div>
+                  <div className="w-8 h-8 border-2 border-secondary border-t-transparent rounded-full animate-spin"></div>
                 </div>
               </TableCell>
             </TableRow>
@@ -65,7 +65,7 @@ function ContentTable<T extends { id: string }>({
             </TableRow>
           ) : (
             data.map((item) => (
-              <TableRow key={item.id} className="border-b border-emerald/30 hover:bg-emerald-light/20 text-black/60">
+              <TableRow key={item.id} className="border-b border-primary/30 hover:bg-primary-light/20 text-black/60">
                 {columns.map((column) => (
                   <TableCell key={`${item.id}-${column.key}`}>
                     {column.render ? column.render((item as any)[column.key], item) : (item as any)[column.key]}
@@ -76,7 +76,7 @@ function ContentTable<T extends { id: string }>({
                     <Button
                       variant="ghost"
                       size="sm"
-                      className="h-8 w-8 p-0 text-gold"
+                      className="h-8 w-8 p-0 text-secondary"
                       onClick={() => onEdit(item)}
                     >
                       <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -87,7 +87,7 @@ function ContentTable<T extends { id: string }>({
                     <Button
                       variant="ghost"
                       size="sm"
-                      className="h-8 w-8 p-0 text-burgundy"
+                      className="h-8 w-8 p-0 text-primary"
                       onClick={() => onDelete(item)}
                     >
                       <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
