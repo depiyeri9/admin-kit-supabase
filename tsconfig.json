@@ -8,6 +8,8 @@
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "moduleResolution": "node",
+    "declaration": true,
+    "outDir": "dist",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true

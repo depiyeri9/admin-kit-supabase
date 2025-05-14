@@ -10,19 +10,17 @@ import { AdminConfig } from "./types/adminConfig";
 import { ProtectedRoute } from "./config/ProtectedRoute";
 import { AdminProvider } from "./context/AdminContext";
 
-export * from "./types/adminConfig"
+export * from "./types/adminConfig";
 
 export type AdminAppProps = {
   config: AdminConfig;
-  children: React.ReactNode;
 };
 
-export const AdminKit = ({ config, children }: AdminAppProps) => {
+export const AdminKit = ({ config }: AdminAppProps) => {
   const db = initDB(config.projectId, config.supabaseUrl, config.supabaseKey);
 
   return (
-    <Routes>
-      {children}
+    <>
       {/* Auth Routes */}
       <Route
         path="/auth/login"
@@ -62,6 +60,6 @@ export const AdminKit = ({ config, children }: AdminAppProps) => {
           />
         </ProtectedRoute>
       </AdminProvider>
-    </Routes>
+    </>
   );
 };
