@@ -10,7 +10,7 @@ import { AdminConfig } from "./types/adminConfig";
 import { ProtectedRoute } from "./config/ProtectedRoute";
 import { AdminProvider } from "./context/AdminContext";
 
-export * from "./types/adminConfig"
+export * from "./types/adminConfig";
 
 export type AdminAppProps = {
   config: AdminConfig;
@@ -21,47 +21,66 @@ export const AdminKit = ({ config, children }: AdminAppProps) => {
   const db = initDB(config.projectId, config.supabaseUrl, config.supabaseKey);
 
   return (
-    <Routes>
-      {children}
-      {/* Auth Routes */}
-      <Route
-        path="/auth/login"
-        element={
-          <LoginPage loginWithEmailPassword={db.auth.loginWithEmailPassword} />
-        }
-      />
-      {/* Protected Admin Routes */}
-      <AdminProvider config={config} logout={db.auth.logout}>
-        <ProtectedRoute getCurrentSession={db.auth.getCurrentSession}>
-          <Route
-            path="/admin"
-            element={
+    <AdminProvider config={config} logout={db.auth.logout}>
+      <Routes>
+        {children}
+        {/* Auth Routes */}
+        <Route
+          path="/auth/login"
+          element={
+            <LoginPage
+              loginWithEmailPassword={db.auth.loginWithEmailPassword}
+            />
+          }
+        />
+
+        {/* Protected Admin Routes */}
+        <Route
+          path="/admin"
+          element={
+            <ProtectedRoute getCurrentSession={db.auth.getCurrentSession}>
               <AdminDashboard
                 getAllArticles={db.articles.getAllArticles}
                 getAllProducts={db.products.getAllProducts}
                 getGalleryItems={db.gallery.getGalleryItems}
                 getTestimonials={db.testimonials.getTestimonials}
               />
-            }
-          />
-          <Route
-            path="/admin/products"
-            element={<AdminProducts query={db.products} />}
-          />
-          <Route
-            path="/admin/articles"
-            element={<AdminArticles query={db.articles} />}
-          />
-          <Route
-            path="/admin/gallery"
-            element={<AdminGallery query={db.gallery} />}
-          />
-          <Route
-            path="/admin/testimonials"
-            element={<AdminTestimonials query={db.testimonials} />}
-          />
-        </ProtectedRoute>
-      </AdminProvider>
-    </Routes>
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/admin/products"
+          element={
+            <ProtectedRoute getCurrentSession={db.auth.getCurrentSession}>
+              <AdminProducts query={db.products} />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/admin/articles"
+          element={
+            <ProtectedRoute getCurrentSession={db.auth.getCurrentSession}>
+              <AdminArticles query={db.articles} />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/admin/gallery"
+          element={
+            <ProtectedRoute getCurrentSession={db.auth.getCurrentSession}>
+              <AdminGallery query={db.gallery} />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/admin/testimonials"
+          element={
+            <ProtectedRoute getCurrentSession={db.auth.getCurrentSession}>
+              <AdminTestimonials query={db.testimonials} />
+            </ProtectedRoute>
+          }
+        />
+      </Routes>
+    </AdminProvider>
   );
 };
