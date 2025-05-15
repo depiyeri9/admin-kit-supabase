@@ -1,11 +1,8 @@
 import { useState, useEffect } from "react";
-import { Link, useNavigate, useLocation } from "react-router-dom";
 import { Button } from "../ui/button";
 import { toast } from "../../hooks/use-toast";
-import { useIsMobile } from "../../hooks/use-mobile";
-import { useAdminContext } from "../../context/AdminContext";
-import { useConfig } from "../../hooks/use-config";
-import { useColor } from "../../hooks/use-color";
+import { useColor, useConfig, useIsMobile, useRouter } from "../../hooks";
+import { Link } from "react-router-dom";
 
 interface AdminLayoutProps {
   children: React.ReactNode;
@@ -14,10 +11,8 @@ interface AdminLayoutProps {
 
 const AdminLayout: React.FC<AdminLayoutProps> = ({ children, title }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const navigate = useNavigate();
-  const location = useLocation();
+  const { pathname, goBack, goTo, logout } = useRouter();
   const isMobile = useIsMobile();
-  const { logout } = useAdminContext(); // Access logout from context
   const color = useColor();
   const config = useConfig();
 
@@ -37,7 +32,7 @@ const AdminLayout: React.FC<AdminLayoutProps> = ({ children, title }) => {
         title: "Logged out successfully",
       });
 
-      navigate("/auth/login");
+      goTo("/auth/login");
     } catch (error) {
       console.error("Logout failed:", error);
       toast({
@@ -62,9 +57,13 @@ const AdminLayout: React.FC<AdminLayoutProps> = ({ children, title }) => {
   ];
 
   return (
-    <div className={`min-h-screen bg-${color.background} text-white flex flex-col md:flex-row`}>
+    <div
+      className={`min-h-screen bg-${color.background} text-white flex flex-col md:flex-row`}
+    >
       {/* Mobile Header */}
-      <header className={`bg-${color.primary}-light border-b border-white/10 p-4 flex justify-between items-center md:hidden`}>
+      <header
+        className={`bg-${color.primary}-light border-b border-white/10 p-4 flex justify-between items-center md:hidden`}
+      >
         <div className={`font-serif text-${color.secondary} text-xl`}>
           {config.title} Admin
         </div>
@@ -215,7 +214,9 @@ const AdminLayout: React.FC<AdminLayoutProps> = ({ children, title }) => {
       <main className={`flex-1 overflow-y-auto bg-${color.background}`}>
         <div className="p-6">
           <div className="mb-8">
-            <h1 className={`font-serif text-2xl md:text-3xl text-${color.secondary}`}>
+            <h1
+              className={`font-serif text-2xl md:text-3xl text-${color.secondary}`}
+            >
               {title}
             </h1>
             <div className={`w-16 h-1 bg-${color.secondary}/30 mt-3`}></div>
