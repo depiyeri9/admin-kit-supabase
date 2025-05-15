@@ -1,3 +1,5 @@
+import { DBHelper } from "supabase-handler";
+
 export type AdminConfig = {
     projectId: string;
     supabaseUrl: string;
@@ -9,6 +11,11 @@ export type AdminConfig = {
         articles?: string;
         galleries?: string;
     };
+    db: DBHelper;
+    navigate: {
+        useNavigate?: () => any;
+        useLocation?: () => any;
+    }
     tailwindTheme?: {
         colors?: {
             primary?: string;
