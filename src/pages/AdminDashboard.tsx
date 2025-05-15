@@ -14,6 +14,7 @@ import {
   getGalleryItemsDTO,
   getTestimonialsDTO,
 } from "supabase-handler";
+import { useConfig } from "../hooks/use-config";
 
 interface CountData {
   products: number;
@@ -29,7 +30,7 @@ type AdminDashboardProps = {
   getTestimonials: getTestimonialsDTO;
 };
 
-const AdminDashboard = ({
+export const AdminDashboard = ({
   getAllProducts,
   getAllArticles,
   getGalleryItems,
@@ -41,6 +42,8 @@ const AdminDashboard = ({
     gallery: 0,
     testimonials: 0,
   });
+
+  const config = useConfig();
 
   // Fetch data counts
   const { data: products, isSuccess: productsLoaded } = useQuery({
@@ -161,10 +164,10 @@ const AdminDashboard = ({
         {/* Welcome Message */}
         <div className="bg-primary p-6 rounded-lg shadow-lg border border-white/10 mb-8">
           <h2 className={"font-serif text-2xl text-secondary mb-2"}>
-            Welcome to Velour Essence Admin
+            Welcome to {config.title} Admin
           </h2>
           <p className="text-white/80">
-            Manage your luxury fragrance brand content from this central
+            Manage your brand content from this central
             dashboard. Select a section below to begin editing your site's
             content.
           </p>
@@ -240,7 +243,9 @@ const AdminDashboard = ({
 
         {/* Quick Actions */}
         <div className="mt-12 space-y-4">
-          <h2 className="font-serif text-xl text-secondary mb-4">Quick Actions</h2>
+          <h2 className="font-serif text-xl text-secondary mb-4">
+            Quick Actions
+          </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
             {quickActions.map((action, index) => (
@@ -335,5 +340,3 @@ const AdminDashboard = ({
     </AdminLayout>
   );
 };
-
-export default AdminDashboard;

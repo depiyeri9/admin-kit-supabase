@@ -17,7 +17,7 @@ type AdminArticlesProps = {
   query: ArticlesQueries;
 };
 
-const AdminArticles = ({ query }: AdminArticlesProps) => {
+export const AdminArticles = ({ query }: AdminArticlesProps) => {
   const {
     createArticle,
     getAllArticles,
@@ -529,5 +529,3 @@ const AdminArticles = ({ query }: AdminArticlesProps) => {
     </AdminLayout>
   );
 };
-
-export default AdminArticles;

@@ -1,9 +1,12 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { Button } from "../components/ui/button";
 import { Input } from "../components/ui/input";
 import { Label } from "../components/ui/label";
 import { toast } from "../hooks/use-toast";
+import { NavigateFunction, useNavigate } from "react-router-dom";
+import { useAdminContext } from "../context/AdminContext";
+import { useColor } from "../hooks/use-color";
+import { useConfig } from "../hooks/use-config";
 
 type LoginPageProps = {
   loginWithEmailPassword: (
@@ -23,13 +26,16 @@ type LoginPageProps = {
         error: unknown;
       }
   >;
+  // navigate: NavigateFunction;
 };
 
-const LoginPage = ({ loginWithEmailPassword }: LoginPageProps) => {
+export const LoginPage = ({ loginWithEmailPassword }: LoginPageProps) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const navigate = useNavigate();
+  const navigate = (a: string) => {};
+  const color = useColor();
+  const config = useConfig();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -74,12 +80,18 @@ const LoginPage = ({ loginWithEmailPassword }: LoginPageProps) => {
     <div className="min-h-screen flex items-center justify-center bg-background">
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
-          <h1 className="font-serif text-6xl text-secondary">Velour Essence</h1>
+          <h1 className={`font-serif text-6xl text-${color.secondary}`}>
+            {config.title}
+          </h1>
           <p className="text-black/60 mt-2">Admin Dashboard</p>
         </div>
 
-        <div className="bg-primary-light border border-secondary/20 rounded-lg shadow-lg p-8">
-          <h2 className="font-serif text-2xl text-secondary mb-6 text-center">
+        <div
+          className={`bg-${color.primary}-light border border-${color.secondary}/20 rounded-lg shadow-lg p-8`}
+        >
+          <h2
+            className={`font-serif text-2xl text-${color.secondary} mb-6 text-center`}
+          >
             Login
           </h2>
 
@@ -93,7 +105,7 @@ const LoginPage = ({ loginWithEmailPassword }: LoginPageProps) => {
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="bg-primary-light/20 border-secondary/30 text-white placeholder-white/50"
+                className={`bg-${color.primary}-light/20 border-${color.secondary}/30 text-white placeholder-white/50`}
                 placeholder="admin@example.com"
                 required
                 disabled={isLoading}
@@ -111,7 +123,7 @@ const LoginPage = ({ loginWithEmailPassword }: LoginPageProps) => {
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="bg-primary-light/20 border-secondary/30 text-white placeholder-white/50"
+                className={`bg-${color.primary}-light/20 border-${color.secondary}/30 text-white placeholder-white/50`}
                 required
                 disabled={isLoading}
               />
@@ -119,7 +131,7 @@ const LoginPage = ({ loginWithEmailPassword }: LoginPageProps) => {
 
             <Button
               type="submit"
-              className="w-full bg-secondary text-black hover:bg-secondary/90"
+              className={`w-full bg-${color.secondary} text-black hover:bg-${color.secondary}/90`}
               disabled={isLoading}
             >
               {isLoading ? (
@@ -163,5 +175,3 @@ const LoginPage = ({ loginWithEmailPassword }: LoginPageProps) => {
     </div>
   );
 };
-
-export default LoginPage;

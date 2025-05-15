@@ -16,7 +16,7 @@ type ProductForm = Omit<Tables["products"]["Insert"], "project_id"> & {
 
 type AdminProductsProps = { query: ProductsQueries };
 
-const AdminProducts = ({ query }: AdminProductsProps) => {
+export const AdminProducts = ({ query }: AdminProductsProps) => {
   const { getAllProducts, createProduct, deleteProduct, updateProduct } = query;
   const [isFormVisible, setIsFormVisible] = useState(false);
   const [currentProduct, setCurrentProduct] = useState<Product | null>(null);
@@ -401,5 +401,3 @@ const AdminProducts = ({ query }: AdminProductsProps) => {
     </AdminLayout>
   );
 };
-
-export default AdminProducts;

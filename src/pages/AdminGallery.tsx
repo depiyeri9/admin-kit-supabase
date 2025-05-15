@@ -17,7 +17,7 @@ type AdminGalleryProps = {
   query: GalleryQueries;
 };
 
-const AdminGallery = ({ query }: AdminGalleryProps) => {
+export const AdminGallery = ({ query }: AdminGalleryProps) => {
   const {
     getGalleryItems,
     createGalleryItem,
@@ -420,5 +420,3 @@ const AdminGallery = ({ query }: AdminGalleryProps) => {
     </AdminLayout>
   );
 };
-
-export default AdminGallery;

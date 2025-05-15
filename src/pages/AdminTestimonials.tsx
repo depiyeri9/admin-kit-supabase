@@ -16,7 +16,7 @@ type AdminTestimonialsProps = {
   query: TestimonialsQueries;
 };
 
-const AdminTestimonials = ({ query }: AdminTestimonialsProps) => {
+export const AdminTestimonials = ({ query }: AdminTestimonialsProps) => {
   const {
     getTestimonials,
     createTestimonial,
@@ -466,5 +466,3 @@ const AdminTestimonials = ({ query }: AdminTestimonialsProps) => {
     </AdminLayout>
   );
 };
-
-export default AdminTestimonials;
