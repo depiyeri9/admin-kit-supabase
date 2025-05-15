@@ -1,8 +1,9 @@
 import React, { createContext, useContext } from "react";
 import { AdminConfig } from "../types/adminConfig";
+import { DBHelper } from "supabase-handler";
 
 interface AdminContextProps {
-  logout: () => Promise<{ error?: unknown }>;
+  db: DBHelper;
   config: AdminConfig;
 }
 
@@ -10,11 +11,11 @@ const AdminContext = createContext<AdminContextProps | undefined>(undefined);
 
 export const AdminProvider: React.FC<{
   children: React.ReactNode;
-  logout: () => Promise<{ error?: unknown }>;
+  db: DBHelper;
   config: AdminConfig;
-}> = ({ children, logout, config }) => {
+}> = ({ children, db, config }) => {
   return (
-    <AdminContext.Provider value={{ logout, config }}>
+    <AdminContext.Provider value={{ db, config }}>
       {children}
     </AdminContext.Provider>
   );
