@@ -14,6 +14,7 @@ import {
   getGalleryItemsDTO,
   getTestimonialsDTO,
 } from "supabase-handler";
+import { useConfig } from "../hooks/use-config";
 
 interface CountData {
   products: number;
@@ -29,7 +30,7 @@ type AdminDashboardProps = {
   getTestimonials: getTestimonialsDTO;
 };
 
-const AdminDashboard = ({
+export const AdminDashboard = ({
   getAllProducts,
   getAllArticles,
   getGalleryItems,
@@ -41,6 +42,8 @@ const AdminDashboard = ({
     gallery: 0,
     testimonials: 0,
   });
+
+  const config = useConfig();
 
   // Fetch data counts
   const { data: products, isSuccess: productsLoaded } = useQuery({
@@ -102,28 +105,28 @@ const AdminDashboard = ({
       value: counts.products,
       icon: "box",
       link: "/admin/products",
-      color: "bg-gradient-to-br from-emerald to-emerald-light",
+      color: "bg-gradient-to-br from-primary to-primary-light",
     },
     {
       title: "Articles",
       value: counts.articles,
       icon: "file-text",
       link: "/admin/articles",
-      color: "bg-gradient-to-br from-burgundy to-burgundy-light",
+      color: "bg-gradient-to-br from-primary to-primary-light",
     },
     {
       title: "Gallery Items",
       value: counts.gallery,
       icon: "image",
       link: "/admin/gallery",
-      color: "bg-gradient-to-br from-emerald-light to-emerald",
+      color: "bg-gradient-to-br from-primary-light to-primary",
     },
     {
       title: "Testimonials",
       value: counts.testimonials,
       icon: "message-square",
       link: "/admin/testimonials",
-      color: "bg-gradient-to-br from-gold to-gold-light",
+      color: "bg-gradient-to-br from-secondary to-secondary-light",
     },
   ];
 
@@ -159,12 +162,12 @@ const AdminDashboard = ({
     <AdminLayout title="Admin Dashboard">
       <div className="space-y-8">
         {/* Welcome Message */}
-        <div className="bg-emerald p-6 rounded-lg shadow-lg border border-white/10 mb-8">
-          <h2 className={"font-serif text-2xl text-gold mb-2"}>
-            Welcome to Velour Essence Admin
+        <div className="bg-primary p-6 rounded-lg shadow-lg border border-white/10 mb-8">
+          <h2 className={"font-serif text-2xl text-secondary mb-2"}>
+            Welcome to {config.title} Admin
           </h2>
           <p className="text-white/80">
-            Manage your luxury fragrance brand content from this central
+            Manage your brand content from this central
             dashboard. Select a section below to begin editing your site's
             content.
           </p>
@@ -240,7 +243,9 @@ const AdminDashboard = ({
 
         {/* Quick Actions */}
         <div className="mt-12 space-y-4">
-          <h2 className="font-serif text-xl text-gold mb-4">Quick Actions</h2>
+          <h2 className="font-serif text-xl text-secondary mb-4">
+            Quick Actions
+          </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
             {quickActions.map((action, index) => (
@@ -249,13 +254,13 @@ const AdminDashboard = ({
                 to={action.link}
                 className="transition-transform hover:scale-105"
               >
-                <Card className="bg-emerald-light border border-gold/10 shadow-lg">
+                <Card className="bg-primary-light border border-secondary/10 shadow-lg">
                   <CardHeader className="pb-2">
                     <div className="flex justify-between items-center">
-                      <CardTitle className="text-md font-serif text-gold">
+                      <CardTitle className="text-md font-serif text-secondary">
                         {action.title}
                       </CardTitle>
-                      <div className="bg-gold/20 text-gold p-2 rounded-full">
+                      <div className="bg-secondary/20 text-secondary p-2 rounded-full">
                         <svg
                           className="w-5 h-5"
                           fill="none"
@@ -313,7 +318,7 @@ const AdminDashboard = ({
         <div className="py-6 text-center">
           <Link
             to="/"
-            className="text-gold hover:text-gold-light flex items-center justify-center"
+            className="text-secondary hover:text-secondary-light flex items-center justify-center"
           >
             <span>View your website</span>
             <svg
@@ -335,5 +340,3 @@ const AdminDashboard = ({
     </AdminLayout>
   );
 };
-
-export default AdminDashboard;

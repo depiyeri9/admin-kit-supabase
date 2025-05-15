@@ -4,21 +4,22 @@ import { Button } from "../ui/button";
 import { toast } from "../../hooks/use-toast";
 import { useIsMobile } from "../../hooks/use-mobile";
 import { useAdminContext } from "../../context/AdminContext";
+import { useConfig } from "../../hooks/use-config";
+import { useColor } from "../../hooks/use-color";
 
 interface AdminLayoutProps {
   children: React.ReactNode;
   title: string;
 }
 
-const AdminLayout: React.FC<AdminLayoutProps> = ({
-  children,
-  title,
-}) => {
+const AdminLayout: React.FC<AdminLayoutProps> = ({ children, title }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
   const isMobile = useIsMobile();
   const { logout } = useAdminContext(); // Access logout from context
+  const color = useColor();
+  const config = useConfig();
 
   // Close sidebar on mobile when route changes
   useEffect(() => {
@@ -50,21 +51,23 @@ const AdminLayout: React.FC<AdminLayoutProps> = ({
   // Navigation links
   const navigationLinks = [
     { name: "Dashboard", path: "/admin", icon: "home" },
-    { name: "Products", path: "/admin/products", icon: "box" },
-    { name: "Articles", path: "/admin/articles", icon: "file-text" },
-    { name: "Gallery", path: "/admin/gallery", icon: "image" },
+    { name: config.products, path: "/admin/products", icon: "box" },
+    { name: config.articles, path: "/admin/articles", icon: "file-text" },
+    { name: config.galleries, path: "/admin/gallery", icon: "image" },
     {
-      name: "Testimonials",
+      name: config.testimonials,
       path: "/admin/testimonials",
       icon: "message-square",
     },
   ];
 
   return (
-    <div className="min-h-screen bg-background text-white flex flex-col md:flex-row">
+    <div className={`min-h-screen bg-${color.background} text-white flex flex-col md:flex-row`}>
       {/* Mobile Header */}
-      <header className="bg-emerald-light border-b border-white/10 p-4 flex justify-between items-center md:hidden">
-        <div className="font-serif text-gold text-xl">Velour Admin</div>
+      <header className={`bg-${color.primary}-light border-b border-white/10 p-4 flex justify-between items-center md:hidden`}>
+        <div className={`font-serif text-${color.secondary} text-xl`}>
+          {config.title} Admin
+        </div>
         <Button
           variant="ghost"
           size="icon"
@@ -98,7 +101,9 @@ const AdminLayout: React.FC<AdminLayoutProps> = ({
 
       {/* Sidebar */}
       <aside
-        className={`bg-emerald-light w-full md:w-64 flex-shrink-0 border-r border-white/10 md:flex flex-col 
+        className={`bg-${
+          color.primary
+        }-light w-full md:w-64 flex-shrink-0 border-r border-white/10 md:flex flex-col 
                     ${
                       isMobile
                         ? isSidebarOpen
@@ -111,9 +116,9 @@ const AdminLayout: React.FC<AdminLayoutProps> = ({
         <div className="p-6 border-b border-white/10">
           <Link
             to="/admin"
-            className="font-serif text-gold text-xl flex items-center"
+            className={`font-serif text-${color.secondary} text-xl flex items-center`}
           >
-            Velour Essence
+            {config.title}
           </Link>
         </div>
 
@@ -125,8 +130,8 @@ const AdminLayout: React.FC<AdminLayoutProps> = ({
               to={link.path}
               className={`flex items-center px-4 py-3 rounded-lg transition-colors ${
                 location.pathname === link.path
-                  ? "bg-emerald text-gold"
-                  : "text-white/70 hover:bg-emerald/50"
+                  ? `bg-${color.primary} text-${color.secondary}`
+                  : `text-white/70 hover:bg-${color.primary}/50`
               }`}
             >
               <svg
@@ -185,7 +190,7 @@ const AdminLayout: React.FC<AdminLayoutProps> = ({
         <div className="p-4 border-t border-white/10">
           <Button
             variant="ghost"
-            className="w-full justify-start text-white/70 hover:text-white hover:bg-emerald/50"
+            className={`w-full justify-start text-white/70 hover:text-white hover:bg-${color.primary}/50`}
             onClick={handleLogout}
           >
             <svg
@@ -207,13 +212,13 @@ const AdminLayout: React.FC<AdminLayoutProps> = ({
       </aside>
 
       {/* Main Content */}
-      <main className="flex-1 overflow-y-auto bg-background">
+      <main className={`flex-1 overflow-y-auto bg-${color.background}`}>
         <div className="p-6">
           <div className="mb-8">
-            <h1 className="font-serif text-2xl md:text-3xl text-gold">
+            <h1 className={`font-serif text-2xl md:text-3xl text-${color.secondary}`}>
               {title}
             </h1>
-            <div className="w-16 h-1 bg-gold/30 mt-3"></div>
+            <div className={`w-16 h-1 bg-${color.secondary}/30 mt-3`}></div>
           </div>
 
           {children}

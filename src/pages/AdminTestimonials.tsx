@@ -16,7 +16,7 @@ type AdminTestimonialsProps = {
   query: TestimonialsQueries;
 };
 
-const AdminTestimonials = ({ query }: AdminTestimonialsProps) => {
+export const AdminTestimonials = ({ query }: AdminTestimonialsProps) => {
   const {
     getTestimonials,
     createTestimonial,
@@ -215,7 +215,7 @@ const AdminTestimonials = ({ query }: AdminTestimonialsProps) => {
             <Star
               key={i}
               className={`h-4 w-4 ${
-                i < value ? "text-gold fill-gold" : "text-gray-300"
+                i < value ? "text-secondary fill-secondary" : "text-gray-300"
               }`}
             />
           ))}
@@ -226,7 +226,7 @@ const AdminTestimonials = ({ query }: AdminTestimonialsProps) => {
       key: "is_featured",
       header: "Featured",
       render: (value: boolean) => (
-        <div className={value ? "text-gold" : "text-white/40"}>
+        <div className={value ? "text-secondary" : "text-white/40"}>
           {value ? (
             <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
               <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
@@ -247,7 +247,7 @@ const AdminTestimonials = ({ query }: AdminTestimonialsProps) => {
           {!isFormVisible ? (
             <Button
               onClick={() => setIsFormVisible(true)}
-              className="bg-gold text-black hover:bg-gold/90"
+              className="bg-secondary text-black hover:bg-secondary/90"
             >
               <svg
                 className="w-4 h-4 mr-2"
@@ -265,9 +265,9 @@ const AdminTestimonials = ({ query }: AdminTestimonialsProps) => {
               Add New Testimonial
             </Button>
           ) : (
-            <div className="bg-emerald-light rounded-lg border border-gold/20 p-6">
+            <div className="bg-primary-light rounded-lg border border-secondary/20 p-6">
               <div className="flex justify-between items-center mb-6">
-                <h2 className="font-serif text-xl text-gold">
+                <h2 className="font-serif text-xl text-secondary">
                   {currentTestimonial
                     ? "Edit Testimonial"
                     : "Add New Testimonial"}
@@ -300,7 +300,7 @@ const AdminTestimonials = ({ query }: AdminTestimonialsProps) => {
                       name="parent_name"
                       value={form.parent_name}
                       onChange={handleInputChange}
-                      className="bg-emerald-gold/20 border-gold/30 text-black"
+                      className="bg-primary-secondary/20 border-secondary/30 text-black"
                       required
                     />
                   </div>
@@ -316,7 +316,7 @@ const AdminTestimonials = ({ query }: AdminTestimonialsProps) => {
                         name="child_name"
                         value={form.child_name || ""}
                         onChange={handleInputChange}
-                        className="bg-emerald-gold/20 border-gold/30 text-black"
+                        className="bg-primary-secondary/20 border-secondary/30 text-black"
                       />
                     </div>
 
@@ -331,7 +331,7 @@ const AdminTestimonials = ({ query }: AdminTestimonialsProps) => {
                         type="number"
                         value={form.child_age !== null ? form.child_age : ""}
                         onChange={handleInputChange}
-                        className="bg-emerald-gold/20 border-gold/30 text-black"
+                        className="bg-primary-secondary/20 border-secondary/30 text-black"
                         min="0"
                         max="100"
                       />
@@ -348,7 +348,7 @@ const AdminTestimonials = ({ query }: AdminTestimonialsProps) => {
                       name="testimonial"
                       value={form.testimonial}
                       onChange={handleInputChange}
-                      className="w-full rounded-md bg-emerald-gold/20 border-gold/30 text-black h-24 px-3 py-2"
+                      className="w-full rounded-md bg-primary-secondary/20 border-secondary/30 text-black h-24 px-3 py-2"
                       required
                     />
                   </div>
@@ -364,7 +364,7 @@ const AdminTestimonials = ({ query }: AdminTestimonialsProps) => {
                           key={i}
                           className={`h-6 w-6 cursor-pointer ${
                             i < form.rating
-                              ? "text-gold fill-gold"
+                              ? "text-secondary fill-secondary"
                               : "text-white-500"
                           }`}
                           onClick={() => handleRatingChange(i + 1)}
@@ -383,7 +383,7 @@ const AdminTestimonials = ({ query }: AdminTestimonialsProps) => {
                       name="avatar_url"
                       value={form.avatar_url || ""}
                       onChange={handleInputChange}
-                      className="bg-emerald-gold/20 border-gold/30 text-black"
+                      className="bg-primary-secondary/20 border-secondary/30 text-black"
                       placeholder="https://example.com/avatar.jpg"
                     />
                   </div>
@@ -406,7 +406,7 @@ const AdminTestimonials = ({ query }: AdminTestimonialsProps) => {
                   <div className="flex gap-4 pt-2">
                     <Button
                       type="submit"
-                      className="bg-gold text-black hover:bg-gold/90"
+                      className="bg-secondary text-black hover:bg-secondary/90"
                       disabled={
                         createMutation.isPending || updateMutation.isPending
                       }
@@ -450,7 +450,7 @@ const AdminTestimonials = ({ query }: AdminTestimonialsProps) => {
 
         {/* Testimonials Table */}
         <div>
-          <h2 className="font-serif text-xl text-gold mb-4">
+          <h2 className="font-serif text-xl text-secondary mb-4">
             All Testimonials
           </h2>
 
@@ -466,5 +466,3 @@ const AdminTestimonials = ({ query }: AdminTestimonialsProps) => {
     </AdminLayout>
   );
 };
-
-export default AdminTestimonials;

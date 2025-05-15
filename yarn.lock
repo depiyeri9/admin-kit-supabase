@@ -5491,9 +5491,9 @@ sucrase@^3.35.0:
     pirates "^4.0.1"
     ts-interface-checker "^0.1.9"
 
-"supabase-handler@https://github.com/depiyeri9/supabase-handler/tarball/0.3.0":
+"supabase-handler@https://github.com/depiyeri9/supabase-handler/tarball/0.3.1":
   version "0.1.0"
-  resolved "https://github.com/depiyeri9/supabase-handler/tarball/0.3.0#3e7cfc177b381cafe9bdc2335af5f2343afb7328"
+  resolved "https://github.com/depiyeri9/supabase-handler/tarball/0.3.1#b2f9588889cdb6846514d74048139ab119a3a35f"
   dependencies:
     "@supabase/supabase-js" "^2.49.4"
     dotenv "^16.0.0"

@@ -16,7 +16,7 @@ type ProductForm = Omit<Tables["products"]["Insert"], "project_id"> & {
 
 type AdminProductsProps = { query: ProductsQueries };
 
-const AdminProducts = ({ query }: AdminProductsProps) => {
+export const AdminProducts = ({ query }: AdminProductsProps) => {
   const { getAllProducts, createProduct, deleteProduct, updateProduct } = query;
   const [isFormVisible, setIsFormVisible] = useState(false);
   const [currentProduct, setCurrentProduct] = useState<Product | null>(null);
@@ -201,12 +201,12 @@ const AdminProducts = ({ query }: AdminProductsProps) => {
       render: (value: boolean) => (
         <div
           className={`px-2 py-1 rounded-full text-xs inline-flex items-center ${
-            value ? "bg-emerald/20 text-emerald" : "bg-red-500/20 text-red-500"
+            value ? "bg-primary/20 text-primary" : "bg-red-500/20 text-red-500"
           }`}
         >
           <span
             className={`w-2 h-2 rounded-full mr-1 ${
-              value ? "bg-emerald" : "bg-red-500"
+              value ? "bg-primary" : "bg-red-500"
             }`}
           ></span>
           {value ? "Active" : "Inactive"}
@@ -223,7 +223,7 @@ const AdminProducts = ({ query }: AdminProductsProps) => {
           {!isFormVisible ? (
             <Button
               onClick={() => setIsFormVisible(true)}
-              className="bg-gold text-black hover:bg-gold/90"
+              className="bg-secondary text-black hover:bg-secondary/90"
             >
               <svg
                 className="w-4 h-4 mr-2"
@@ -241,9 +241,9 @@ const AdminProducts = ({ query }: AdminProductsProps) => {
               Add New Product
             </Button>
           ) : (
-            <div className="bg-emerald-light rounded-lg border border-gold/20 p-6">
+            <div className="bg-primary-light rounded-lg border border-secondary/20 p-6">
               <div className="flex justify-between items-center mb-6">
-                <h2 className="font-serif text-xl text-gold">
+                <h2 className="font-serif text-xl text-secondary">
                   {currentProduct ? "Edit Product" : "Add New Product"}
                 </h2>
                 <Button
@@ -272,7 +272,7 @@ const AdminProducts = ({ query }: AdminProductsProps) => {
                       name="name"
                       value={form.name}
                       onChange={handleInputChange}
-                      className="bg-emerald-gold/20 border-gold/30 text-black"
+                      className="bg-primary-secondary/20 border-secondary/30 text-black"
                       required
                     />
                   </div>
@@ -287,7 +287,7 @@ const AdminProducts = ({ query }: AdminProductsProps) => {
                       name="description"
                       value={form.description}
                       onChange={handleInputChange}
-                      className="w-full rounded-md bg-emerald-gold/20 border-gold/30 text-black h-24 px-3 py-2"
+                      className="w-full rounded-md bg-primary-secondary/20 border-secondary/30 text-black h-24 px-3 py-2"
                     />
                   </div>
 
@@ -303,7 +303,7 @@ const AdminProducts = ({ query }: AdminProductsProps) => {
                       min="0"
                       value={form.price}
                       onChange={handleInputChange}
-                      className="bg-emerald-gold/20 border-gold/30 text-black"
+                      className="bg-primary-secondary/20 border-secondary/30 text-black"
                       required
                     />
                   </div>
@@ -318,7 +318,7 @@ const AdminProducts = ({ query }: AdminProductsProps) => {
                       name="images[0]"
                       value={form.images?.[0] || ""}
                       onChange={handleInputChange}
-                      className="bg-emerald-gold/20 border-gold/30 text-black"
+                      className="bg-primary-secondary/20 border-secondary/30 text-black"
                       placeholder="https://example.com/image.jpg"
                     />
                   </div>
@@ -343,7 +343,7 @@ const AdminProducts = ({ query }: AdminProductsProps) => {
                   <div className="flex gap-4 pt-2">
                     <Button
                       type="submit"
-                      className="bg-gold text-black hover:bg-gold/90"
+                      className="bg-secondary text-black hover:bg-secondary/90"
                       disabled={
                         createMutation.isPending || updateMutation.isPending
                       }
@@ -387,7 +387,7 @@ const AdminProducts = ({ query }: AdminProductsProps) => {
 
         {/* Products Table */}
         <div>
-          <h2 className="font-serif text-xl text-gold mb-4">All Products</h2>
+          <h2 className="font-serif text-xl text-secondary mb-4">All Products</h2>
 
           <ContentTable
             columns={columns}
@@ -401,5 +401,3 @@ const AdminProducts = ({ query }: AdminProductsProps) => {
     </AdminLayout>
   );
 };
-
-export default AdminProducts;

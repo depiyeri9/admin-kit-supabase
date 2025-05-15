@@ -17,7 +17,7 @@ type AdminGalleryProps = {
   query: GalleryQueries;
 };
 
-const AdminGallery = ({ query }: AdminGalleryProps) => {
+export const AdminGallery = ({ query }: AdminGalleryProps) => {
   const {
     getGalleryItems,
     createGalleryItem,
@@ -188,7 +188,7 @@ const AdminGallery = ({ query }: AdminGalleryProps) => {
       key: "category",
       header: "Category",
       render: (value: string) => (
-        <div className="px-2 py-1 rounded-full bg-emerald/20 text-xs inline-block">
+        <div className="px-2 py-1 rounded-full bg-primary/20 text-xs inline-block">
           {value}
         </div>
       ),
@@ -197,7 +197,7 @@ const AdminGallery = ({ query }: AdminGalleryProps) => {
       key: "is_featured",
       header: "Featured",
       render: (value: boolean) => (
-        <div className={value ? "text-gold" : "text-emerald/40"}>
+        <div className={value ? "text-secondary" : "text-primary/40"}>
           {value ? (
             <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
               <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
@@ -218,7 +218,7 @@ const AdminGallery = ({ query }: AdminGalleryProps) => {
           {!isFormVisible ? (
             <Button
               onClick={() => setIsFormVisible(true)}
-              className="bg-gold text-black hover:bg-gold/90"
+              className="bg-secondary text-black hover:bg-secondary/90"
             >
               <svg
                 className="w-4 h-4 mr-2"
@@ -236,9 +236,9 @@ const AdminGallery = ({ query }: AdminGalleryProps) => {
               Add Gallery Item
             </Button>
           ) : (
-            <div className="bg-emerald-light rounded-lg border border-gold/20 p-6">
+            <div className="bg-primary-light rounded-lg border border-secondary/20 p-6">
               <div className="flex justify-between items-center mb-6">
-                <h2 className="font-serif text-xl text-gold">
+                <h2 className="font-serif text-xl text-secondary">
                   {currentItem ? "Edit Gallery Item" : "Add New Gallery Item"}
                 </h2>
                 <Button
@@ -266,7 +266,7 @@ const AdminGallery = ({ query }: AdminGalleryProps) => {
                         name="title"
                         value={form.title}
                         onChange={handleInputChange}
-                        className="bg-emerald-gold/20 border-gold/30 text-black"
+                        className="bg-primary-secondary/20 border-secondary/30 text-black"
                         required
                       />
                     </div>
@@ -281,7 +281,7 @@ const AdminGallery = ({ query }: AdminGalleryProps) => {
                         name="image_url"
                         value={form.image_url}
                         onChange={handleInputChange}
-                        className="bg-emerald-gold/20 border-gold/30 text-black"
+                        className="bg-primary-secondary/20 border-secondary/30 text-black"
                         placeholder="https://example.com/image.jpg"
                         required
                       />
@@ -297,7 +297,7 @@ const AdminGallery = ({ query }: AdminGalleryProps) => {
                         name="category"
                         value={form.category}
                         onChange={handleInputChange}
-                        className="bg-emerald-gold/20 border-gold/30 text-black"
+                        className="bg-primary-secondary/20 border-secondary/30 text-black"
                         required
                       />
                     </div>
@@ -320,7 +320,7 @@ const AdminGallery = ({ query }: AdminGalleryProps) => {
                     <div className="flex gap-4 pt-4">
                       <Button
                         type="submit"
-                        className="bg-gold text-black hover:bg-gold/90"
+                        className="bg-secondary text-black hover:bg-secondary/90"
                         disabled={
                           createMutation.isPending || updateMutation.isPending
                         }
@@ -359,7 +359,7 @@ const AdminGallery = ({ query }: AdminGalleryProps) => {
                     </div>
                   </div>
 
-                  <div className="flex flex-col items-center justify-center bg-emerald-light/5 rounded-lg p-4">
+                  <div className="flex flex-col items-center justify-center bg-primary-light/5 rounded-lg p-4">
                     {form.image_url ? (
                       <div className="max-w-full">
                         <img
@@ -404,7 +404,7 @@ const AdminGallery = ({ query }: AdminGalleryProps) => {
 
         {/* Gallery Items Table */}
         <div>
-          <h2 className="font-serif text-xl text-gold mb-4">
+          <h2 className="font-serif text-xl text-secondary mb-4">
             All Gallery Items
           </h2>
 
@@ -420,5 +420,3 @@ const AdminGallery = ({ query }: AdminGalleryProps) => {
     </AdminLayout>
   );
 };
-
-export default AdminGallery;

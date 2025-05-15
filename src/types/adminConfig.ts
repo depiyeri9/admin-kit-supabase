@@ -2,16 +2,23 @@ export type AdminConfig = {
     projectId: string;
     supabaseUrl: string;
     supabaseKey: string;
-    terminology?: {
+    terminology: {
+        title: string;
         products?: string;
         testimonials?: string;
         articles?: string;
         galleries?: string;
     };
     tailwindTheme?: {
-        extend?: {
-            colors?: Record<string, string>;
-            fontFamily?: Record<string, string>;
-        };
+        colors?: {
+            primary?: string;
+            secondary?: string;
+            tertiary?: string;
+            background?: string;
+        },
+        fontFamily?: {
+            sans?: string;
+            serif?: string;
+        }
     };
 };
