@@ -2,15 +2,10 @@
     "name": "admin-kit-supabase",
     "version": "0.1.0",
     "description": "Admin kit for managing Supabase data with customizable entities and UI.",
-    "main": "dist/admin-kit-supabase.cjs.js",
-    "module": "dist/admin-kit-supabase.esm.js",
+    "main": "dist/admin-kit-supabase.es.js",
+    "module": "dist/admin-kit-supabase.es.js",
+    "browser": "dist/admin-kit-supabase.umd.js",
     "types": "dist/index.d.ts",
-    "exports": {
-        ".": {
-            "import": "./dist/admin-kit-supabase.es.js",
-            "require": "./dist/admin-kit-supabase.es.js"
-        }
-    },
     "scripts": {
         "build": "vite build",
         "start": "vite",
